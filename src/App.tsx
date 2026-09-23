@@ -293,6 +293,8 @@ function CloudResourcesDashboard() {
 
 // --- 3. Tactical Companion Dashboard ---
 function CompanionDashboard() {
+  const [selectedGame, setSelectedGame] = useState('eafc25');
+
   const players = [
     { id: 1, name: 'Haaland', pos: 'ST', stamina: 85, rating: 91 },
     { id: 2, name: 'Foden', pos: 'LW', stamina: 72, rating: 85 },
@@ -309,61 +311,166 @@ function CompanionDashboard() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-gray-950 rounded-b-3xl z-50"></div>
         
         {/* Mobile Header */}
-        <div className="pt-12 pb-4 px-6 bg-gradient-to-b from-cyan-900/30 to-transparent flex justify-between items-center">
-          <div>
-            <p className="text-xs text-cyan-400 font-bold uppercase tracking-wider">OmniPlay Companion</p>
-            <h2 className="text-xl font-bold">EA FC 25</h2>
+        <div className="pt-12 pb-2 px-6 bg-gradient-to-b from-cyan-900/30 to-transparent flex flex-col">
+          <div className="flex justify-between items-center mb-4">
+             <p className="text-xs text-cyan-400 font-bold uppercase tracking-wider">OmniPlay Companion</p>
+             <Activity className="text-cyan-400 w-5 h-5 animate-pulse" />
           </div>
-          <Activity className="text-cyan-400 w-5 h-5 animate-pulse" />
+          
+          {/* Game Selector */}
+          <div className="flex gap-2 overflow-x-auto custom-scrollbar pb-3 mb-2">
+            <button onClick={() => setSelectedGame('eafc25')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'eafc25' ? 'bg-cyan-500 text-gray-950' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>EA FC 25</button>
+            <button onClick={() => setSelectedGame('cyberpunk')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'cyberpunk' ? 'bg-yellow-500 text-gray-950' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Cyberpunk 2077</button>
+            <button onClick={() => setSelectedGame('forza')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'forza' ? 'bg-pink-500 text-white' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Forza Horizon 5</button>
+          </div>
         </div>
 
-        {/* Tactical View */}
-        <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar">
-          <div className="mb-6 flex justify-between items-center bg-gray-800/50 p-3 rounded-xl border border-gray-700/50">
-            <span className="text-sm text-gray-300">Formation</span>
-            <select className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-medium focus:outline-none focus:border-cyan-500 text-cyan-400 cursor-pointer">
-              <option>4-3-3 Attack</option>
-              <option>4-4-2 Flat</option>
-              <option>3-5-2</option>
-            </select>
-          </div>
+        {/* ---------------- EA FC 25 VIEW ---------------- */}
+        {selectedGame === 'eafc25' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4">EA FC 25</h2>
+            <div className="mb-6 flex justify-between items-center bg-gray-800/50 p-3 rounded-xl border border-gray-700/50">
+              <span className="text-sm text-gray-300">Formation</span>
+              <select className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm font-medium focus:outline-none focus:border-cyan-500 text-cyan-400 cursor-pointer">
+                <option>4-3-3 Attack</option>
+                <option>4-4-2 Flat</option>
+                <option>3-5-2</option>
+              </select>
+            </div>
 
-          <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Live Squad Fitness</h3>
-          
-          <div className="space-y-4">
-            {players.map(player => (
-              <div key={player.id} className="bg-gray-800/40 border border-gray-700/30 p-4 rounded-xl">
-                <div className="flex justify-between items-end mb-2">
-                  <div className="flex items-center gap-3">
-                    <span className="w-8 text-center text-xs font-bold text-cyan-400 bg-cyan-500/10 py-1 rounded">{player.pos}</span>
-                    <span className="font-medium text-gray-200">{player.name}</span>
+            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Live Squad Fitness</h3>
+            
+            <div className="space-y-4">
+              {players.map(player => (
+                <div key={player.id} className="bg-gray-800/40 border border-gray-700/30 p-4 rounded-xl">
+                  <div className="flex justify-between items-end mb-2">
+                    <div className="flex items-center gap-3">
+                      <span className="w-8 text-center text-xs font-bold text-cyan-400 bg-cyan-500/10 py-1 rounded">{player.pos}</span>
+                      <span className="font-medium text-gray-200">{player.name}</span>
+                    </div>
+                    <span className="text-xs text-gray-400 font-mono">OVR {player.rating}</span>
                   </div>
-                  <span className="text-xs text-gray-400 font-mono">OVR {player.rating}</span>
+                  
+                  {/* Stamina Bar */}
+                  <div className="mt-3">
+                    <div className="flex justify-between text-xs mb-1">
+                      <span className="text-gray-400">Stamina</span>
+                      <span className={player.stamina < 70 ? 'text-yellow-400' : 'text-green-400'}>{player.stamina}%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-gray-700 rounded-full overflow-hidden">
+                      <div 
+                        className={`h-full rounded-full transition-all duration-1000 ${
+                          player.stamina < 65 ? 'bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.5)]' : 'bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]'
+                        }`}
+                        style={{ width: `${player.stamina}%` }}
+                      ></div>
+                    </div>
+                  </div>
                 </div>
-                
-                {/* Stamina Bar */}
-                <div className="mt-3">
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-gray-400">Stamina</span>
-                    <span className={player.stamina < 70 ? 'text-yellow-400' : 'text-green-400'}>{player.stamina}%</span>
-                  </div>
-                  <div className="h-1.5 w-full bg-gray-700 rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full rounded-full transition-all duration-1000 ${
-                        player.stamina < 65 ? 'bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.5)]' : 'bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]'
-                      }`}
-                      style={{ width: `${player.stamina}%` }}
-                    ></div>
-                  </div>
-                </div>
+              ))}
+            </div>
+            
+            <button className="w-full mt-6 py-3 bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 font-bold rounded-xl hover:bg-cyan-500 hover:text-gray-950 transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)] cursor-pointer">
+              Apply Quick Tactics
+            </button>
+          </div>
+        )}
+
+        {/* ---------------- CYBERPUNK 2077 VIEW ---------------- */}
+        {selectedGame === 'cyberpunk' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-yellow-500">Cyberpunk 2077</h2>
+            
+            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 mb-4">
+               <div className="flex justify-between items-center mb-2">
+                 <span className="text-yellow-500 font-mono text-sm">HEALTH</span>
+                 <span className="text-yellow-400 font-bold font-mono">245 / 300</span>
+               </div>
+               <div className="h-2 w-full bg-gray-800 rounded-full overflow-hidden">
+                 <div className="h-full bg-red-500 w-[80%] shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
+               </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4 mb-4">
+               <div className="bg-gray-800/50 border border-gray-700/50 p-3 rounded-xl flex flex-col justify-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">RAM (Quickhacks)</span>
+                 <span className="text-cyan-400 font-mono text-lg font-bold">8 / 12</span>
+               </div>
+               <div className="bg-gray-800/50 border border-gray-700/50 p-3 rounded-xl flex flex-col justify-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Eurodollars</span>
+                 <span className="text-green-400 font-mono text-lg font-bold">€$ 45,230</span>
+               </div>
+            </div>
+
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 mt-6">Active Cyberware</h3>
+            <div className="space-y-3">
+               <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/30">
+                 <span className="text-sm font-medium text-gray-200">Sandevistan</span>
+                 <span className="text-xs bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded">READY</span>
+               </div>
+               <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/30">
+                 <span className="text-sm font-medium text-gray-200">Optical Camo</span>
+                 <span className="text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-2 py-1 rounded">CD: 12s</span>
+               </div>
+            </div>
+            
+            <button className="w-full mt-6 py-3 bg-yellow-500/10 border border-yellow-500/50 text-yellow-500 font-bold rounded-xl hover:bg-yellow-500 hover:text-gray-950 transition-all shadow-[0_0_15px_rgba(234,179,8,0.2)] cursor-pointer">
+              Call Vehicle (Yaiba Kusanagi)
+            </button>
+          </div>
+        )}
+
+        {/* ---------------- FORZA HORIZON 5 VIEW ---------------- */}
+        {selectedGame === 'forza' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-pink-500">Forza Horizon 5</h2>
+            
+            {/* Speedometer Mockup */}
+            <div className="relative mb-6">
+              <div className="w-full h-32 bg-gray-800/50 rounded-xl flex flex-col items-center justify-center border border-gray-700">
+                 <div className="font-mono text-4xl font-bold text-white">215<span className="text-sm text-gray-400 ml-1">km/h</span></div>
+                 <div className="w-3/4 h-2 bg-gray-900 rounded-full mt-3 overflow-hidden">
+                    <div className="h-full bg-pink-500 w-[70%]"></div>
+                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-6">
+               <div className="bg-gray-800/40 border border-gray-700/30 p-3 rounded-xl text-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block">GEAR</span>
+                 <span className="text-2xl font-bold text-white font-mono">5</span>
+               </div>
+               <div className="bg-gray-800/40 border border-gray-700/30 p-3 rounded-xl text-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block">RPM</span>
+                 <span className="text-2xl font-bold text-white font-mono">7200</span>
+               </div>
+            </div>
+
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Tire Telemetry (Temp)</h3>
+            <div className="grid grid-cols-2 gap-3">
+               <div className="bg-gray-800/40 border-l-2 border-green-500 p-2 rounded flex justify-between items-center">
+                 <span className="text-xs text-gray-500">FL</span>
+                 <span className="font-mono text-sm text-green-400 font-bold">82°C</span>
+               </div>
+               <div className="bg-gray-800/40 border-l-2 border-green-500 p-2 rounded flex justify-between items-center">
+                 <span className="text-xs text-gray-500">FR</span>
+                 <span className="font-mono text-sm text-green-400 font-bold">83°C</span>
+               </div>
+               <div className="bg-gray-800/40 border-l-2 border-yellow-500 p-2 rounded flex justify-between items-center">
+                 <span className="text-xs text-gray-500">RL</span>
+                 <span className="font-mono text-sm text-yellow-400 font-bold">95°C</span>
+               </div>
+               <div className="bg-gray-800/40 border-l-2 border-yellow-500 p-2 rounded flex justify-between items-center">
+                 <span className="text-xs text-gray-500">RR</span>
+                 <span className="font-mono text-sm text-yellow-400 font-bold">96°C</span>
+               </div>
+            </div>
+
+            <button className="w-full mt-6 py-3 bg-pink-500/10 border border-pink-500/50 text-pink-400 font-bold rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-[0_0_15px_rgba(236,72,153,0.2)] cursor-pointer">
+              Open Quick Tune
+            </button>
           </div>
-          
-          <button className="w-full mt-6 py-3 bg-cyan-500/10 border border-cyan-500/50 text-cyan-400 font-bold rounded-xl hover:bg-cyan-500 hover:text-gray-950 transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)] cursor-pointer">
-            Apply Quick Tactics
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );
