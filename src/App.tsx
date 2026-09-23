@@ -79,8 +79,8 @@ function PlayerDashboard() {
       image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg'
     },
     { 
-      id: 3, title: 'Valorant', genre: 'FPS / Competitive', status: 'Ready to Play',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Valorant_cover_art.jpg'
+      id: 3, title: 'Helldivers 2', genre: 'Co-op / Shooter', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/header.jpg'
     },
     { 
       id: 4, title: 'Forza Horizon 5', genre: 'Racing / Open World', status: 'Update Available',
@@ -93,6 +93,10 @@ function PlayerDashboard() {
     { 
       id: 6, title: 'Red Dead Redemption 2', genre: 'Action / Adventure', status: 'Cloud Syncing...',
       image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg'
+    },
+    { 
+      id: 7, title: 'Ghost of Tsushima', genre: 'Action / Open World', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg'
     }
   ];
 
