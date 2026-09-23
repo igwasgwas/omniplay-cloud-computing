@@ -80,7 +80,7 @@ function PlayerDashboard() {
     },
     { 
       id: 3, title: 'Valorant', genre: 'FPS / Competitive', status: 'Ready to Play',
-      image: 'https://cdn1.epicgames.com/offer/cbd5ea06240d4ffaa7f3b81121d55f0b/EGS_VALORANT_RiotGames_S2_1200x1600-98f9dafa3b4df9d1ad9e1c33c3dc02c9'
+      image: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Valorant_cover_art.jpg'
     },
     { 
       id: 4, title: 'Forza Horizon 5', genre: 'Racing / Open World', status: 'Update Available',
