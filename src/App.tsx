@@ -72,27 +72,27 @@ function PlayerDashboard() {
   const games = [
     { 
       id: 1, title: 'Cyberpunk 2077', genre: 'RPG / Action', status: 'Ready to Play',
-      image: 'https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=800&auto=format&fit=crop'
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg'
     },
     { 
       id: 2, title: 'EA FC 25', genre: 'Sports / Simulator', status: 'Playing Now', active: true,
-      image: 'https://images.unsplash.com/photo-1518605368461-1ee7e5b29092?q=80&w=800&auto=format&fit=crop'
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg'
     },
     { 
       id: 3, title: 'Valorant', genre: 'FPS / Competitive', status: 'Ready to Play',
-      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop'
+      image: 'https://cdn1.epicgames.com/offer/cbd5ea06240d4ffaa7f3b81121d55f0b/EGS_VALORANT_RiotGames_S1_2560x1440-b6a693cb49a46dc164a6eeb1e34cc400'
     },
     { 
       id: 4, title: 'Forza Horizon 5', genre: 'Racing / Open World', status: 'Update Available',
-      image: 'https://images.unsplash.com/photo-1547038577-bc800d0810db?q=80&w=800&auto=format&fit=crop'
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg'
     },
     { 
       id: 5, title: 'Black Myth: Wukong', genre: 'Action RPG', status: 'Ready to Play',
-      image: 'https://images.unsplash.com/photo-1635830625698-3b9bd74671ca?q=80&w=800&auto=format&fit=crop'
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg'
     },
     { 
       id: 6, title: 'Red Dead Redemption 2', genre: 'Action / Adventure', status: 'Cloud Syncing...',
-      image: 'https://images.unsplash.com/photo-1598555192131-08ec3964d7c0?q=80&w=800&auto=format&fit=crop'
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg'
     }
   ];
 
