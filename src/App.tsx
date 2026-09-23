@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Gamepad2, Server, Thermometer, MonitorSmartphone, 
   BarChart3, Download, ChevronDown, Activity, 
-  Zap, FileText, FileJson, Cloud, Cpu, HardDrive, Network, Globe
+  Zap, FileText, FileJson, Cloud, Cpu, HardDrive, Network, Globe,
+  Heart, Eye
 } from 'lucide-react';
 
 export default function OmniPlayApp() {
@@ -321,7 +322,11 @@ function CompanionDashboard() {
           <div className="flex gap-2 overflow-x-auto custom-scrollbar pb-3 mb-2">
             <button onClick={() => setSelectedGame('eafc25')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'eafc25' ? 'bg-cyan-500 text-gray-950' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>EA FC 25</button>
             <button onClick={() => setSelectedGame('cyberpunk')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'cyberpunk' ? 'bg-yellow-500 text-gray-950' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Cyberpunk 2077</button>
+            <button onClick={() => setSelectedGame('helldivers')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'helldivers' ? 'bg-yellow-400 text-black' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Helldivers 2</button>
             <button onClick={() => setSelectedGame('forza')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'forza' ? 'bg-pink-500 text-white' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Forza Horizon 5</button>
+            <button onClick={() => setSelectedGame('wukong')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'wukong' ? 'bg-orange-500 text-white' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Black Myth: Wukong</button>
+            <button onClick={() => setSelectedGame('rdr2')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'rdr2' ? 'bg-red-700 text-white' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>RDR 2</button>
+            <button onClick={() => setSelectedGame('ghost')} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-colors cursor-pointer ${selectedGame === 'ghost' ? 'bg-gray-200 text-gray-950' : 'bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500'}`}>Ghost of Tsushima</button>
           </div>
         </div>
 
@@ -420,6 +425,44 @@ function CompanionDashboard() {
           </div>
         )}
 
+        {/* ---------------- HELLDIVERS 2 VIEW ---------------- */}
+        {selectedGame === 'helldivers' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-yellow-400">Helldivers 2</h2>
+            
+            <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-4 mb-4 flex justify-between items-center">
+               <div>
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block mb-1">Mission Time</span>
+                 <span className="text-red-400 font-mono text-xl font-bold">14:23</span>
+               </div>
+               <div className="text-right">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block mb-1">Reinforcements</span>
+                 <span className="text-blue-400 font-mono text-xl font-bold">12 / 20</span>
+               </div>
+            </div>
+            
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 mt-4">Stratagems</h3>
+            <div className="space-y-3">
+               <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/30">
+                 <span className="text-sm font-medium text-gray-200">Eagle 500kg Bomb</span>
+                 <span className="text-xs bg-green-500/20 text-green-400 border border-green-500/30 px-2 py-1 rounded font-mono">↑→↓↓↓</span>
+               </div>
+               <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/30 opacity-60">
+                 <span className="text-sm font-medium text-gray-200">Orbital Laser</span>
+                 <span className="text-xs bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-1 rounded">CD: 45s</span>
+               </div>
+               <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/30">
+                 <span className="text-sm font-medium text-gray-200">Reinforce</span>
+                 <span className="text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-1 rounded font-mono">↑↓→←↑</span>
+               </div>
+            </div>
+            
+            <button className="w-full mt-6 py-3 bg-yellow-500/20 border border-yellow-500/50 text-yellow-400 font-bold rounded-xl hover:bg-yellow-400 hover:text-black transition-all shadow-[0_0_15px_rgba(250,204,21,0.2)] cursor-pointer">
+              Request Extraction
+            </button>
+          </div>
+        )}
+
         {/* ---------------- FORZA HORIZON 5 VIEW ---------------- */}
         {selectedGame === 'forza' && (
           <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
@@ -469,6 +512,154 @@ function CompanionDashboard() {
             <button className="w-full mt-6 py-3 bg-pink-500/10 border border-pink-500/50 text-pink-400 font-bold rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-[0_0_15px_rgba(236,72,153,0.2)] cursor-pointer">
               Open Quick Tune
             </button>
+          </div>
+        )}
+
+        {/* ---------------- BLACK MYTH WUKONG VIEW ---------------- */}
+        {selectedGame === 'wukong' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-orange-500">Black Myth: Wukong</h2>
+            
+            <div className="bg-gray-800/40 border border-gray-700/30 rounded-xl p-4 mb-4">
+               <div className="flex justify-between items-center mb-1">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">Health</span>
+               </div>
+               <div className="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden mb-3">
+                 <div className="h-full bg-green-500 w-[100%]"></div>
+               </div>
+               
+               <div className="flex justify-between items-center mb-1">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">Mana</span>
+               </div>
+               <div className="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden mb-3">
+                 <div className="h-full bg-blue-500 w-[60%]"></div>
+               </div>
+
+               <div className="flex justify-between items-center mb-1">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">Stamina</span>
+               </div>
+               <div className="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden">
+                 <div className="h-full bg-yellow-500 w-[85%]"></div>
+               </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-6">
+               <div className="bg-gray-800/40 border border-gray-700/30 p-3 rounded-xl text-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block mb-1">Gourd Charges</span>
+                 <span className="text-2xl font-bold text-green-400 font-mono">4 / 5</span>
+               </div>
+               <div className="bg-gray-800/40 border border-gray-700/30 p-3 rounded-xl text-center">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider block mb-1">Focus Points</span>
+                 <div className="flex justify-center gap-1 mt-2">
+                   <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_5px_white]"></div>
+                   <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_5px_white]"></div>
+                   <div className="w-3 h-3 rounded-full bg-gray-700"></div>
+                 </div>
+               </div>
+            </div>
+            
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Active Stance</h3>
+            <div className="flex gap-2">
+              <div className="flex-1 bg-orange-500/20 border border-orange-500/50 p-2 rounded text-center text-orange-400 text-sm font-bold">Smash</div>
+              <div className="flex-1 bg-gray-800/50 border border-gray-700 p-2 rounded text-center text-gray-500 text-sm">Pillar</div>
+              <div className="flex-1 bg-gray-800/50 border border-gray-700 p-2 rounded text-center text-gray-500 text-sm">Thrust</div>
+            </div>
+          </div>
+        )}
+
+        {/* ---------------- RED DEAD REDEMPTION 2 VIEW ---------------- */}
+        {selectedGame === 'rdr2' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-red-700">Red Dead Redemption 2</h2>
+            
+            <div className="flex gap-4 mb-6 justify-center">
+               <div className="flex flex-col items-center">
+                 <div className="w-12 h-12 rounded-full border-2 border-gray-700 flex items-center justify-center relative">
+                   <div className="absolute inset-0 rounded-full border-2 border-red-500" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}></div>
+                   <Heart className="w-5 h-5 text-red-500" />
+                 </div>
+                 <span className="text-[10px] text-gray-400 mt-1 uppercase">Health</span>
+               </div>
+               <div className="flex flex-col items-center">
+                 <div className="w-12 h-12 rounded-full border-2 border-gray-700 flex items-center justify-center relative">
+                   <div className="absolute inset-0 rounded-full border-2 border-yellow-500" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 80%)' }}></div>
+                   <Zap className="w-5 h-5 text-yellow-500" />
+                 </div>
+                 <span className="text-[10px] text-gray-400 mt-1 uppercase">Stamina</span>
+               </div>
+               <div className="flex flex-col items-center">
+                 <div className="w-12 h-12 rounded-full border-2 border-gray-700 flex items-center justify-center relative">
+                   <div className="absolute inset-0 rounded-full border-2 border-gray-400" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 40%, 0 40%)' }}></div>
+                   <Eye className="w-5 h-5 text-gray-300" />
+                 </div>
+                 <span className="text-[10px] text-gray-400 mt-1 uppercase">Dead Eye</span>
+               </div>
+            </div>
+
+            <div className="bg-gray-800/40 border border-gray-700/30 p-4 rounded-xl mb-4">
+              <span className="text-[10px] text-gray-400 uppercase tracking-wider block mb-2">Location</span>
+              <p className="text-lg font-bold text-gray-200 font-serif">Valentine, New Hanover</p>
+              <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-700/50">
+                <span className="text-sm text-gray-400">Current Bounty</span>
+                <span className="text-red-500 font-bold font-mono">$ 45.00</span>
+              </div>
+            </div>
+
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Horse Status</h3>
+            <div className="bg-gray-800/40 border border-gray-700/30 p-3 rounded-lg flex justify-between items-center">
+              <div>
+                <p className="text-sm font-bold text-gray-200">White Arabian</p>
+                <p className="text-xs text-gray-400 mt-1">Bonding Level 4</p>
+              </div>
+              <button className="px-3 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600 transition-colors cursor-pointer">Call Horse</button>
+            </div>
+          </div>
+        )}
+
+        {/* ---------------- GHOST OF TSUSHIMA VIEW ---------------- */}
+        {selectedGame === 'ghost' && (
+          <div className="flex-1 overflow-y-auto px-6 pb-6 custom-scrollbar animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold mb-4 text-gray-200">Ghost of Tsushima</h2>
+            
+            <div className="bg-gray-800/40 border border-gray-700/30 rounded-xl p-4 mb-4">
+               <div className="flex justify-between items-center mb-1">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">Health</span>
+               </div>
+               <div className="h-2 w-full bg-gray-900 rounded-full overflow-hidden mb-4 border border-gray-700">
+                 <div className="h-full bg-red-600 w-[75%] shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
+               </div>
+               
+               <div className="flex justify-between items-center mb-1">
+                 <span className="text-[10px] text-gray-400 uppercase tracking-wider">Resolve</span>
+               </div>
+               <div className="flex gap-1">
+                 <div className="w-6 h-6 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.6)]"></div>
+                 <div className="w-6 h-6 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.6)]"></div>
+                 <div className="w-6 h-6 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.6)]"></div>
+                 <div className="w-6 h-6 rounded-full bg-gray-700"></div>
+                 <div className="w-6 h-6 rounded-full bg-gray-700"></div>
+               </div>
+            </div>
+
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Combat Stance</h3>
+            <div className="grid grid-cols-2 gap-2 mb-6">
+              <div className="bg-gray-200/10 border border-gray-200/30 p-2 rounded text-center text-gray-200 text-sm font-bold">Stone Stance</div>
+              <div className="bg-gray-800/50 border border-gray-700 p-2 rounded text-center text-gray-500 text-sm">Water Stance</div>
+              <div className="bg-gray-800/50 border border-gray-700 p-2 rounded text-center text-gray-500 text-sm">Wind Stance</div>
+              <div className="bg-gray-800/50 border border-gray-700 p-2 rounded text-center text-gray-500 text-sm">Moon Stance</div>
+            </div>
+
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Ghost Weapons</h3>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center bg-gray-800/30 p-2 rounded-lg">
+                <span className="text-sm text-gray-300">Kunai</span>
+                <span className="text-sm font-mono text-gray-400">3 / 5</span>
+              </div>
+              <div className="flex justify-between items-center bg-gray-800/30 p-2 rounded-lg">
+                <span className="text-sm text-gray-300">Smoke Bomb</span>
+                <span className="text-sm font-mono text-gray-400">1 / 2</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
