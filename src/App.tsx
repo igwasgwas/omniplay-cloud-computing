@@ -98,6 +98,30 @@ function PlayerDashboard() {
     { 
       id: 7, title: 'Ghost of Tsushima', genre: 'Action / Open World', status: 'Ready to Play',
       image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg'
+    },
+    { 
+      id: 8, title: 'Baldur\'s Gate 3', genre: 'RPG / Strategy', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg'
+    },
+    { 
+      id: 9, title: 'Elden Ring', genre: 'Action RPG', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg'
+    },
+    { 
+      id: 10, title: 'Grand Theft Auto V', genre: 'Action / Open World', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg'
+    },
+    { 
+      id: 11, title: 'Apex Legends', genre: 'Battle Royale', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/header.jpg'
+    },
+    { 
+      id: 12, title: 'Hogwarts Legacy', genre: 'Action RPG', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg'
+    },
+    { 
+      id: 13, title: 'Monster Hunter: World', genre: 'Action RPG', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg'
     }
   ];
 
