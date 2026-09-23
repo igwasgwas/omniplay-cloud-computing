@@ -8,7 +8,7 @@ export default function PlayerDashboard({ onLaunchGame }: { onLaunchGame?: (titl
 
   const games = [
     { id: 1, title: 'Cyberpunk 2077', genre: 'RPG', status: 'Ready', played: 'Yesterday', hours: '86 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/library_hero.jpg' },
-    { id: 2, title: 'EA FC 25', genre: 'Sports', status: 'Playing Now', active: true, played: 'Today', hours: '124 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/page_bg_generated_v6b.jpg' },
+    { id: 2, title: 'EA FC 25', genre: 'Sports', status: 'Playing Now', active: true, played: 'Today', hours: '124 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/library_hero.jpg' },
     { id: 3, title: 'Helldivers 2', genre: 'Shooter', status: 'Ready', played: '2 days ago', hours: '45 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/library_hero.jpg' },
     { id: 4, title: 'Forza Horizon 5', genre: 'Racing', status: 'Update Available', played: '5 days ago', hours: '210 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/library_hero.jpg' },
     { id: 5, title: 'Black Myth: Wukong', genre: 'Action RPG', status: 'Ready', played: '1 week ago', hours: '32 hrs', image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg', banner: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg' },
@@ -67,7 +67,7 @@ export default function PlayerDashboard({ onLaunchGame }: { onLaunchGame?: (titl
       
       {/* 1. HERO SECTION (Steam-like Big Banner) */}
       <div className="relative w-full h-[500px] mb-8 group overflow-hidden border-b border-gray-800">
-        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] group-hover:scale-105 ease-linear" style={{ backgroundImage: `url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/page_bg_generated_v6b.jpg')` }}></div>
+        <div className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] group-hover:scale-105 ease-linear" style={{ backgroundImage: `url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/library_hero.jpg')` }}></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#14151a] via-[#14151a]/60 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#14151a] via-[#14151a]/80 to-transparent w-2/3"></div>
 
