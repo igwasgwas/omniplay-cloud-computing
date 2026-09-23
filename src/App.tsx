@@ -122,6 +122,38 @@ function PlayerDashboard() {
     { 
       id: 13, title: 'Monster Hunter: World', genre: 'Action RPG', status: 'Ready to Play',
       image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg'
+    },
+    { 
+      id: 14, title: 'The Witcher 3: Wild Hunt', genre: 'Action RPG', status: 'Cloud Syncing...',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg'
+    },
+    { 
+      id: 15, title: 'God of War', genre: 'Action / Adventure', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg'
+    },
+    { 
+      id: 16, title: 'Marvel\'s Spider-Man Remastered', genre: 'Action / Adventure', status: 'Update Available',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg'
+    },
+    { 
+      id: 17, title: 'DOOM Eternal', genre: 'Action / Shooter', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/782330/header.jpg'
+    },
+    { 
+      id: 18, title: 'Horizon Zero Dawn', genre: 'Action RPG', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1151640/header.jpg'
+    },
+    { 
+      id: 19, title: 'Resident Evil 4', genre: 'Survival Horror', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg'
+    },
+    { 
+      id: 20, title: 'Final Fantasy VII Remake', genre: 'Action RPG', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1462040/header.jpg'
+    },
+    { 
+      id: 21, title: 'Death Stranding', genre: 'Action / Adventure', status: 'Ready to Play',
+      image: 'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190460/header.jpg'
     }
   ];
 
