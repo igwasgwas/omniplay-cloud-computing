@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Gamepad2, Server, Thermometer, Play, Clock, Trophy, Search, SlidersHorizontal } from 'lucide-react';
 
-export default function PlayerDashboard() {
+export default function PlayerDashboard({ onLaunchGame }: { onLaunchGame?: (title: string) => void }) {
   const [filter, setFilter] = useState('Recent');
   const [search, setSearch] = useState('');
 
@@ -60,14 +60,14 @@ export default function PlayerDashboard() {
   });
 
   return (
-    <div className="flex-1 min-h-screen bg-[#1a1c23] overflow-y-auto pb-12">
+    <div className="flex-1 min-h-screen bg-[#14151a] overflow-y-auto pb-12">
       
       {/* 1. HERO SECTION (Steam-like Big Banner) */}
-      <div className="relative w-full h-[500px] mb-8 group overflow-hidden">
+      <div className="relative w-full h-[500px] mb-8 group overflow-hidden border-b border-gray-800">
         {/* Dynamic Background */}
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] group-hover:scale-105 ease-linear" style={{ backgroundImage: `url('https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2669320/page_bg_generated_v6b.jpg')` }}></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1c23] via-[#1a1c23]/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1c23] via-[#1a1c23]/80 to-transparent w-2/3"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#14151a] via-[#14151a]/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#14151a] via-[#14151a]/80 to-transparent w-2/3"></div>
 
         {/* Hero Content */}
         <div className="absolute bottom-0 left-0 p-10 w-full lg:w-2/3 z-10">
@@ -86,7 +86,7 @@ export default function PlayerDashboard() {
           </div>
 
           <div className="flex gap-4">
-            <button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 px-12 rounded-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-[0_10px_20px_rgba(37,99,235,0.4)] cursor-pointer">
+            <button onClick={() => onLaunchGame && onLaunchGame('EA FC 25')} className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 px-12 rounded-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-[0_10px_20px_rgba(37,99,235,0.4)] cursor-pointer">
               <Play className="w-6 h-6 fill-white" />
               <span className="text-lg tracking-wider">RESUME</span>
             </button>
@@ -169,7 +169,7 @@ export default function PlayerDashboard() {
               
               {/* Hover Content (Play Button) */}
               <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                 <button className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 hover:scale-110 active:scale-95">
+                 <button onClick={() => onLaunchGame && onLaunchGame(game.title)} className="w-14 h-14 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 hover:scale-110 active:scale-95 cursor-pointer">
                    <Play className="w-6 h-6 fill-white ml-1" />
                  </button>
               </div>

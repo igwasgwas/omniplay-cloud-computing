@@ -101,156 +101,139 @@ export default function AnalyticsDashboard() {
         </div>
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3 text-gray-400">
-            <Flame className="w-4 h-4 text-orange-400" />
-            <span className="text-xs uppercase tracking-widest font-bold">Sessions</span>
+            <BarChart3 className="w-4 h-4 text-purple-400" />
+            <span className="text-xs uppercase tracking-widest font-bold">Bandwidth</span>
           </div>
-          <p className="text-3xl font-black text-white">312</p>
-          <p className="text-xs text-gray-500 mt-1">Avg 2.7 hrs/session</p>
+          <p className="text-3xl font-black text-purple-400">48<span className="text-lg text-gray-400 ml-1">Mbps</span></p>
+          <p className="text-xs text-gray-500 mt-1">Peak: 65 Mbps</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
-        {/* FPS Chart */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-            <BarChart3 className="text-green-400 w-5 h-5" />
-            FPS Timeline (Last Session)
-          </h3>
-          <div className="flex items-end gap-1 h-40">
-            {fpsHistory.map((fps, i) => {
-              const height = ((fps - 90) / 40) * 100;
-              return (
-                <div key={i} className="flex-1 flex flex-col items-center gap-1 group cursor-pointer">
-                  <span className="text-[9px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">{fps}</span>
-                  <div
-                    className="w-full rounded-t transition-all duration-300 group-hover:opacity-100 opacity-80"
-                    style={{
-                      height: `${height}%`,
-                      background: fps >= 120 ? 'linear-gradient(to top, #22c55e, #4ade80)' :
-                                  fps >= 110 ? 'linear-gradient(to top, #06b6d4, #22d3ee)' :
-                                  'linear-gradient(to top, #eab308, #facc15)',
-                      boxShadow: fps >= 120 ? '0 0 8px rgba(34,197,94,0.4)' : 'none'
-                    }}
-                  ></div>
-                </div>
-              );
-            })}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* FPS Custom Chart */}
+        <div className="lg:col-span-2 bg-gray-900 border border-gray-800 rounded-xl p-6">
+          <div className="flex justify-between items-center mb-8">
+            <h3 className="font-bold text-lg">Framerate Stability (Last Session)</h3>
+            <span className="text-xs font-bold text-gray-400 bg-gray-800 px-3 py-1 rounded-full">Cyberpunk 2077</span>
           </div>
-          <div className="flex justify-between text-[10px] text-gray-500 mt-2 border-t border-gray-800 pt-2">
-            <span>0:00</span>
-            <span>Session Duration</span>
-            <span>2:45:00</span>
+          
+          <div className="h-64 flex items-end justify-between gap-1 mt-4 relative">
+            {/* Y-Axis lines */}
+            <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+              <div className="border-b border-gray-800/50 w-full flex-1"></div>
+              <div className="border-b border-gray-800/50 w-full flex-1"></div>
+              <div className="border-b border-gray-800/50 w-full flex-1"></div>
+              <div className="border-b border-gray-800/50 w-full flex-1"></div>
+            </div>
+            {/* Y-Axis labels */}
+            <div className="absolute -left-8 inset-y-0 flex flex-col justify-between text-[10px] text-gray-600 pb-6 font-mono pointer-events-none">
+              <span>144</span>
+              <span>120</span>
+              <span>90</span>
+              <span>60</span>
+              <span>0</span>
+            </div>
+
+            {/* Bars */}
+            {fpsHistory.map((fps, i) => (
+              <div key={i} className="group relative w-full flex flex-col justify-end h-full cursor-crosshair z-10">
+                <div 
+                  className={`w-full rounded-t-sm transition-all duration-300 group-hover:brightness-125 ${
+                    fps >= 120 ? 'bg-green-500' : fps >= 100 ? 'bg-cyan-500' : 'bg-yellow-500'
+                  }`}
+                  style={{ height: `${(fps / 144) * 100}%` }}
+                ></div>
+                
+                {/* Tooltip */}
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black border border-gray-700 text-white text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 shadow-xl">
+                  {fps} FPS
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-black border-r border-b border-gray-700 rotate-45"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-between mt-2 text-[10px] text-gray-500 font-mono pl-2">
+            <span>0m</span>
+            <span>10m</span>
+            <span>20m</span>
+            <span>30m</span>
+            <span>40m</span>
+            <span>50m</span>
+            <span>60m</span>
           </div>
         </div>
 
-        {/* Frametime Distribution */}
+        {/* Game Specific Insights */}
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-          <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-            <Activity className="text-purple-400 w-5 h-5" />
-            Frametime Distribution
-          </h3>
+          <h3 className="font-bold text-lg mb-6">Game Insights</h3>
           <div className="space-y-4">
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-gray-400">{"< 8.3ms (120+ fps)"}</span>
-                <span className="text-green-400 font-bold">72%</span>
+            {gameInsights.map((insight, i) => (
+              <div key={i} className="flex items-center gap-4 bg-gray-950/50 p-3 rounded-lg border border-gray-800/50 hover:bg-gray-800 transition-colors cursor-default">
+                <div className={`p-2 rounded-lg bg-gray-900 border border-gray-800 ${insight.color}`}>
+                  {insight.icon}
+                </div>
+                <div className="flex-1">
+                  <p className="text-xs text-gray-400">{insight.game}</p>
+                  <p className="text-sm font-bold text-white">{insight.stat}</p>
+                </div>
+                <div className="text-right">
+                  <p className={`font-mono font-bold ${insight.color}`}>{insight.value}</p>
+                </div>
               </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-green-600 to-green-400 rounded-full w-[72%] shadow-[0_0_10px_rgba(74,222,128,0.3)]"></div>
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-gray-400">8.3ms - 16.7ms (60-120 fps)</span>
-                <span className="text-cyan-400 font-bold">24%</span>
-              </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 rounded-full w-[24%]"></div>
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-gray-400">{"16.7ms - 33.3ms (30-60 fps)"}</span>
-                <span className="text-yellow-400 font-bold">3%</span>
-              </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full w-[3%]"></div>
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="text-gray-400">{"> 33.3ms (stutter)"}</span>
-                <span className="text-red-400 font-bold">1%</span>
-              </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-red-600 to-red-400 rounded-full w-[1%]"></div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Activity Heatmap */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8">
-        <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-          <Flame className="text-orange-400 w-5 h-5" />
-          Weekly Activity Heatmap
-        </h3>
-        <div className="overflow-x-auto">
-          <div className="min-w-[600px]">
-            <div className="flex gap-0.5 mb-1 pl-10">
-              {hours.filter((_, i) => i % 3 === 0).map(h => (
-                <div key={h} className="text-[9px] text-gray-500 text-center" style={{ width: `${(3/24)*100}%` }}>
-                  {h.toString().padStart(2, '0')}:00
-                </div>
+      <div className="mt-8 bg-gray-900 border border-gray-800 rounded-xl p-6 overflow-x-auto">
+        <h3 className="font-bold text-lg mb-6">Activity Heatmap (Current Week)</h3>
+        <div className="flex gap-2 min-w-max pb-4">
+          <div className="flex flex-col gap-1 pr-2 border-r border-gray-800">
+            {weekDays.map(day => (
+              <div key={day} className="h-6 flex items-center text-[10px] font-bold text-gray-500">{day}</div>
+            ))}
+          </div>
+          
+          <div className="flex-1">
+            <div className="flex gap-1 mb-2">
+              {hours.map(h => (
+                <div key={h} className="flex-1 text-center text-[10px] text-gray-600">{h}</div>
               ))}
             </div>
-            {weekDays.map((day, di) => (
-              <div key={day} className="flex items-center gap-1 mb-0.5">
-                <span className="w-8 text-[10px] text-gray-500 text-right shrink-0">{day}</span>
-                <div className="flex-1 flex gap-0.5">
-                  {heatmapData[di].map((val, hi) => (
-                    <div
-                      key={hi}
-                      className={`flex-1 h-4 rounded-sm ${getHeatColor(val)} transition-all hover:ring-1 hover:ring-cyan-400 cursor-pointer`}
-                      title={`${day} ${hi}:00 - Intensity: ${val}`}
-                    ></div>
+            <div className="flex flex-col gap-1">
+              {heatmapData.map((dayData, dayIndex) => (
+                <div key={dayIndex} className="flex gap-1">
+                  {dayData.map((val, hourIndex) => (
+                    <div 
+                      key={`${dayIndex}-${hourIndex}`} 
+                      className={`group relative flex-1 h-6 rounded-sm ${getHeatColor(val)} hover:ring-1 hover:ring-white transition-all cursor-crosshair`}
+                    >
+                      {/* Tooltip */}
+                      {val > 0 && (
+                        <div className="absolute bottom-full mb-1 left-1/2 -translate-x-1/2 bg-black border border-gray-700 text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 shadow-xl">
+                          {val} hrs played at {hours[hourIndex]}:00
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
-            <div className="flex items-center gap-2 mt-3 pl-10">
-              <span className="text-[10px] text-gray-500">Less</span>
-              {[0,1,2,3,4,5].map(v => (
-                <div key={v} className={`w-3 h-3 rounded-sm ${getHeatColor(v)}`}></div>
               ))}
-              <span className="text-[10px] text-gray-500">More</span>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Game-Specific Insights */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
-        <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
-          <Trophy className="text-yellow-400 w-5 h-5" />
-          Game-Specific Insights
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {gameInsights.map((insight, i) => (
-            <div key={i} className="bg-gray-800/50 border border-gray-700/50 p-4 rounded-xl flex items-center gap-4 hover:border-gray-600 transition-colors">
-              <div className={`p-3 bg-gray-900 rounded-lg ${insight.color}`}>
-                {insight.icon}
-              </div>
-              <div>
-                <p className="text-xs text-gray-400 mb-0.5">{insight.game}</p>
-                <p className="text-sm font-bold text-gray-300">{insight.stat}</p>
-                <p className={`text-lg font-black ${insight.color}`}>{insight.value}</p>
-              </div>
-            </div>
-          ))}
+        <div className="flex items-center gap-2 mt-4 text-xs text-gray-500 justify-end">
+          <span>Less</span>
+          <div className="flex gap-1">
+            {[0,1,2,3,4,5].map(v => (
+              <div key={v} className={`w-3 h-3 rounded-sm ${getHeatColor(v)}`}></div>
+            ))}
+          </div>
+          <span>More</span>
         </div>
       </div>
+
     </div>
   );
 }
