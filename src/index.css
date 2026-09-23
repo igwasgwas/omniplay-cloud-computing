@@ -17,3 +17,14 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(34, 211, 238, 0.5);
 }
+
+@keyframes glare {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  20% { transform: translateX(150%) skewX(-20deg); }
+  100% { transform: translateX(150%) skewX(-20deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
