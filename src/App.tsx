@@ -72,7 +72,7 @@ export default function OmniPlayApp() {
               <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border border-[#14151a]"></div>
             </div>
             <span className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">Player 1</span>
-            <span className="text-xs text-blue-400 font-bold bg-blue-500/10 px-1.5 py-0.5 rounded">€ 45.20</span>
+            <span className="text-xs text-blue-400 font-bold bg-blue-500/10 px-1.5 py-0.5 rounded">Rp 750.000</span>
           </div>
 
           <div className="flex items-center gap-4 border-l border-gray-700 pl-4 text-gray-400">
