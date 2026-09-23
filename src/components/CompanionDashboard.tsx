@@ -3,11 +3,12 @@ import {
   Activity, Zap, Trophy, Terminal, Cpu, Crosshair, Target, Flame, Swords, Wind,
   Heart, Eye, Map, Users, ShieldAlert, Skull, Radio, Shield, Thermometer, Package,
   Droplets, Sword, Wand2, Star, Sparkles, Battery, Weight, Baby, Hexagon,
-  CircleDot, GitBranch, Layers, CheckCircle2
+  CircleDot, GitBranch, Layers, CheckCircle2, Rocket, Pickaxe, Phone, Gamepad
 } from 'lucide-react';
 
 type GameKey = 'eafc25' | 'cyberpunk' | 'helldivers' | 'forza' | 'wukong' | 'rdr2' | 'ghost'
-  | 'witcher3' | 'godofwar' | 'spiderman' | 'doom' | 'horizon' | 're4' | 'ff7r' | 'deathstranding';
+  | 'witcher3' | 'godofwar' | 'spiderman' | 'doom' | 'horizon' | 're4' | 'ff7r' | 'deathstranding'
+  | 'gta6' | 'cod' | 'starfield' | 'valorant' | 'minecraft';
 
 interface GameTab {
   key: GameKey;
@@ -16,6 +17,11 @@ interface GameTab {
 }
 
 const gameTabs: GameTab[] = [
+  { key: 'gta6', label: 'GTA VI', activeClass: 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-[0_0_15px_rgba(236,72,153,0.5)] italic' },
+  { key: 'cod', label: 'Black Ops 6', activeClass: 'bg-orange-600 text-black shadow-lg shadow-orange-500/20 font-black tracking-widest' },
+  { key: 'starfield', label: 'Starfield', activeClass: 'bg-white text-black font-mono shadow-[0_0_15px_rgba(255,255,255,0.4)]' },
+  { key: 'valorant', label: 'Valorant', activeClass: 'bg-[#ff4655] text-white shadow-[0_0_15px_rgba(255,70,85,0.4)]' },
+  { key: 'minecraft', label: 'Minecraft', activeClass: 'bg-green-600 text-white border-2 border-green-800 shadow-[inset_0_-4px_0_rgba(0,0,0,0.3)] font-mono' },
   { key: 'eafc25', label: 'EA FC 25', activeClass: 'bg-gradient-to-r from-emerald-400 to-teal-500 text-black shadow-lg shadow-teal-500/20' },
   { key: 'cyberpunk', label: 'Cyberpunk 2077', activeClass: 'bg-yellow-400 text-black shadow-lg shadow-yellow-400/20' },
   { key: 'helldivers', label: 'Helldivers 2', activeClass: 'bg-yellow-500 text-black font-mono shadow-[0_0_10px_rgba(234,179,8,0.5)]' },
@@ -46,6 +52,11 @@ export default function CompanionDashboard() {
     <div className="h-full flex items-center justify-center p-8 bg-gray-950/50 relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 opacity-15 pointer-events-none transition-all duration-1000">
+        {selectedGame === 'gta6' && <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 blur-[100px]"></div>}
+        {selectedGame === 'cod' && <div className="absolute inset-0 bg-gradient-to-br from-orange-600 to-black blur-[100px]"></div>}
+        {selectedGame === 'starfield' && <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-white blur-[100px]"></div>}
+        {selectedGame === 'valorant' && <div className="absolute inset-0 bg-gradient-to-br from-[#ff4655] to-[#111111] blur-[100px]"></div>}
+        {selectedGame === 'minecraft' && <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-amber-800 blur-[100px]"></div>}
         {selectedGame === 'eafc25' && <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-blue-600 blur-[100px]"></div>}
         {selectedGame === 'cyberpunk' && <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-red-600 blur-[100px]"></div>}
         {selectedGame === 'helldivers' && <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-black blur-[100px]"></div>}
@@ -102,6 +113,11 @@ export default function CompanionDashboard() {
         </div>
 
         {/* GAME VIEWS */}
+        {selectedGame === 'gta6' && <GTA6View notify={notify} />}
+        {selectedGame === 'cod' && <CODView notify={notify} />}
+        {selectedGame === 'starfield' && <StarfieldView notify={notify} />}
+        {selectedGame === 'valorant' && <ValorantView notify={notify} />}
+        {selectedGame === 'minecraft' && <MinecraftView notify={notify} />}
         {selectedGame === 'eafc25' && <EAFC25View notify={notify} />}
         {selectedGame === 'cyberpunk' && <CyberpunkView notify={notify} />}
         {selectedGame === 'helldivers' && <HelldiversView notify={notify} />}
@@ -606,6 +622,190 @@ function DeathStrandingView({ notify }: { notify: any }) {
           <p className="text-3xl font-black text-blue-400">12,847</p>
           <p className="text-[10px] text-blue-300/70 uppercase tracking-widest mt-1">Total Likes Received</p>
         </button>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   NEW COMPANION APPS (MASSIVE EXPANSION)
+   ============================================================ */
+
+function GTA6View({ notify }: { notify: any }) {
+  const apps = [
+    { name: 'Bleeter', icon: <Users className="w-5 h-5 text-white" />, color: 'bg-blue-400' },
+    { name: 'Lifeinvader', icon: <Activity className="w-5 h-5 text-white" />, color: 'bg-red-500' },
+    { name: 'Bank', icon: <Star className="w-5 h-5 text-white" />, color: 'bg-green-500' },
+    { name: 'Contacts', icon: <Phone className="w-5 h-5 text-white" />, color: 'bg-orange-500' },
+    { name: 'Camera', icon: <Eye className="w-5 h-5 text-white" />, color: 'bg-gray-400' },
+    { name: 'Settings', icon: <Activity className="w-5 h-5 text-white" />, color: 'bg-gray-700' },
+  ];
+  return (
+    <div className="flex-1 overflow-y-auto bg-cover bg-center px-4 py-8 custom-scrollbar relative" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512411953049-7c4eebe7da8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')` }}>
+      <div className="absolute inset-0 bg-gradient-to-t from-pink-500/80 via-transparent to-purple-900/60 pointer-events-none"></div>
+      <div className="relative z-10 flex flex-col h-full justify-between">
+        <div className="text-center mt-4">
+          <p className="text-4xl font-light text-white drop-shadow-md">14:42</p>
+          <p className="text-sm font-bold text-white drop-shadow-md">Vice City, FL</p>
+        </div>
+        
+        <div className="grid grid-cols-4 gap-4 mb-8">
+          {apps.map((app, i) => (
+             <button key={i} onClick={() => notify(`Opening ${app.name}...`)} className="flex flex-col items-center gap-1 active:scale-90 transition-transform cursor-pointer">
+               <div className={`w-14 h-14 rounded-2xl ${app.color} flex items-center justify-center shadow-lg`}>
+                 {app.icon}
+               </div>
+               <span className="text-[10px] text-white font-bold drop-shadow-md">{app.name}</span>
+             </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CODView({ notify }: { notify: any }) {
+  const attachments = [
+    { type: 'Optic', name: 'Cronen Mini Pro', stat: '+ADS Speed' },
+    { type: 'Barrel', name: '16.5" Factory', stat: '+Damage Range' },
+    { type: 'Muzzle', name: 'Harbinger D20', stat: '+Sound Suppression' },
+    { type: 'Underbarrel', name: 'FTAC Ripper 56', stat: '+Recoil Stability' },
+    { type: 'Magazine', name: '45 Round Mag', stat: '+Ammo Capacity' }
+  ];
+  return (
+    <div className="flex-1 overflow-y-auto bg-[#1a1c1a] px-5 py-6 custom-scrollbar relative font-mono">
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,#f97316,transparent_70%)] pointer-events-none"></div>
+      <div className="relative z-10">
+        <div className="flex justify-between items-center mb-6 border-b border-orange-900/50 pb-4">
+          <div><h2 className="text-2xl font-black text-white tracking-widest">GUNSMITH</h2><p className="text-xs text-orange-500">M4 ASSAULT RIFLE</p></div>
+          <Crosshair className="w-8 h-8 text-orange-500" />
+        </div>
+        
+        <div className="bg-gradient-to-r from-orange-500/20 to-transparent p-4 border-l-4 border-orange-500 mb-6">
+          <p className="text-[10px] text-gray-400 mb-1">WEAPON LEVEL</p>
+          <div className="flex justify-between font-bold text-white mb-2"><span>MAX</span><span>20 / 20</span></div>
+          <div className="w-full h-1 bg-gray-800"><div className="w-full h-full bg-orange-500"></div></div>
+        </div>
+
+        <h3 className="text-xs font-bold text-gray-500 mb-3 tracking-widest">ATTACHMENTS (5/5)</h3>
+        <div className="space-y-2">
+          {attachments.map(att => (
+            <button key={att.type} onClick={() => notify(`Swapping ${att.type}...`)} className="w-full flex justify-between items-center bg-[#2a2c2a] border border-[#3a3c3a] p-3 hover:border-orange-500 transition-colors cursor-pointer group">
+              <div className="text-left">
+                <p className="text-[10px] text-orange-500">{att.type}</p>
+                <p className="text-sm font-bold text-white">{att.name}</p>
+              </div>
+              <span className="text-[10px] text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">{att.stat}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StarfieldView({ notify }: { notify: any }) {
+  const systems = [
+    { id: 'W0', name: 'LAS', power: 4, max: 6, color: 'bg-red-500' },
+    { id: 'W1', name: 'BAL', power: 2, max: 4, color: 'bg-red-500' },
+    { id: 'W2', name: 'MSL', power: 1, max: 4, color: 'bg-red-500' },
+    { id: 'ENG', name: 'ENG', power: 6, max: 8, color: 'bg-cyan-500' },
+    { id: 'SHD', name: 'SHD', power: 5, max: 6, color: 'bg-blue-500' },
+    { id: 'GRV', name: 'GRV', power: 0, max: 4, color: 'bg-yellow-500' },
+  ];
+  return (
+    <div className="flex-1 overflow-y-auto bg-[#0a0a0a] px-5 py-6 custom-scrollbar relative font-mono text-gray-300">
+      <div className="relative z-10">
+        <div className="flex items-center gap-3 mb-8 border-b border-gray-800 pb-4">
+          <Rocket className="w-6 h-6 text-white" />
+          <div><h2 className="text-lg font-bold text-white uppercase tracking-widest">Frontier</h2><p className="text-[10px] text-gray-500 uppercase">Power Allocation</p></div>
+        </div>
+
+        <div className="flex justify-between items-end gap-2 px-2 h-64 border-b border-gray-800 pb-2">
+          {systems.map(sys => (
+            <div key={sys.id} className="flex flex-col items-center flex-1 group cursor-pointer" onClick={() => notify(`${sys.name} Power Adjusted`)}>
+              <div className="flex flex-col-reverse justify-start w-full gap-1 mb-2 h-full">
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <div key={i} className={`w-full h-3 border border-black ${i < sys.power ? sys.color : i < sys.max ? 'bg-gray-800' : 'bg-transparent opacity-10'}`}></div>
+                ))}
+              </div>
+              <span className="text-xs font-bold">{sys.name}</span>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-8 bg-gray-900 border border-gray-800 p-4 rounded text-center">
+          <p className="text-[10px] uppercase text-gray-500 mb-1">Hull Integrity</p>
+          <div className="w-full h-2 bg-red-900 mb-2"><div className="h-full bg-red-500 w-[85%]"></div></div>
+          <p className="text-sm font-bold text-white">85%</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ValorantView({ notify }: { notify: any }) {
+  const agents = ['Jett', 'Reyna', 'Omen', 'Killjoy', 'Sova', 'Cypher', 'Viper', 'Phoenix'];
+  return (
+    <div className="flex-1 overflow-y-auto bg-[#111111] px-5 py-6 custom-scrollbar relative">
+      <div className="relative z-10">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-black text-[#ff4655] uppercase tracking-tighter">SELECT AGENT</h2>
+          <p className="text-xs text-gray-400 uppercase tracking-widest mt-1">Attackers • 0:15</p>
+        </div>
+
+        <div className="grid grid-cols-4 gap-3 mb-8">
+          {agents.map((agent, i) => (
+            <button key={agent} onClick={() => notify(`Locked in ${agent}`)} className="aspect-square bg-gray-900 border border-gray-800 hover:border-[#ff4655] flex flex-col items-center justify-center gap-1 active:scale-95 transition-all group cursor-pointer">
+              <div className={`w-8 h-8 rounded-full ${i === 0 ? 'bg-[#ff4655]' : 'bg-gray-700'} group-hover:bg-[#ff4655] transition-colors`}></div>
+              <span className="text-[8px] font-bold text-white uppercase">{agent}</span>
+            </button>
+          ))}
+        </div>
+
+        <button className="w-full bg-[#ff4655] text-white font-black py-4 uppercase tracking-widest shadow-[4px_4px_0_rgba(255,255,255,0.2)] hover:translate-y-[2px] hover:shadow-[2px_2px_0_rgba(255,255,255,0.2)] transition-all cursor-pointer">
+          LOCK IN
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MinecraftView({ notify }: { notify: any }) {
+  return (
+    <div className="flex-1 overflow-y-auto bg-[#8b8b8b] px-5 py-6 custom-scrollbar relative font-mono select-none">
+      <div className="relative z-10 flex flex-col items-center">
+        <h2 className="text-xl font-bold text-gray-800 mb-6 drop-shadow-sm">Crafting</h2>
+        
+        <div className="flex items-center gap-6 mb-8">
+          {/* Crafting Grid */}
+          <div className="grid grid-cols-3 gap-1 bg-[#c6c6c6] p-1 border-t-2 border-l-2 border-t-gray-500 border-l-gray-500 border-b-2 border-r-2 border-b-white border-r-white">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} onClick={() => notify("Item Placed")} className="w-10 h-10 bg-[#8b8b8b] border-t-2 border-l-2 border-t-gray-900 border-l-gray-900 border-b-2 border-r-2 border-b-gray-400 border-r-gray-400 cursor-pointer flex items-center justify-center hover:bg-gray-500 transition-colors">
+                {i === 4 && <div className="w-6 h-6 bg-yellow-700 rounded-sm"></div>}
+                {i === 7 && <div className="w-2 h-6 bg-yellow-900 rounded-sm"></div>}
+              </div>
+            ))}
+          </div>
+
+          <Gamepad className="w-6 h-6 text-gray-700" />
+
+          {/* Output Slot */}
+          <div className="w-14 h-14 bg-[#c6c6c6] p-1 border-t-2 border-l-2 border-t-gray-500 border-l-gray-500 border-b-2 border-r-2 border-b-white border-r-white">
+            <div onClick={() => notify("Crafted Wooden Pickaxe", <Pickaxe className="w-4 h-4 text-amber-700" />)} className="w-full h-full bg-[#8b8b8b] border-t-2 border-l-2 border-t-gray-900 border-l-gray-900 border-b-2 border-r-2 border-b-gray-400 border-r-gray-400 cursor-pointer flex items-center justify-center hover:bg-gray-500">
+              <Pickaxe className="w-8 h-8 text-amber-700" />
+            </div>
+          </div>
+        </div>
+
+        {/* Inventory */}
+        <div className="w-full bg-[#c6c6c6] p-2 border-t-2 border-l-2 border-t-gray-500 border-l-gray-500 border-b-2 border-r-2 border-b-white border-r-white">
+          <div className="grid grid-cols-9 gap-1">
+             {Array.from({ length: 27 }).map((_, i) => (
+               <div key={i} className="aspect-square bg-[#8b8b8b] border-t-2 border-l-2 border-t-gray-900 border-l-gray-900 border-b-2 border-r-2 border-b-gray-400 border-r-gray-400"></div>
+             ))}
+          </div>
+        </div>
       </div>
     </div>
   );
